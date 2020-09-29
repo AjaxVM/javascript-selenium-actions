@@ -1,0 +1,31 @@
+{
+  "name": "javascript-selenium-actions",
+  "version": "1.0.0",
+  "description": "Test repo to try to run Selenium tests in Github Actions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "jest tests/e2e"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AjaxVM/javascript-selenium-actions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AjaxVM/javascript-selenium-actions/issues"
+  },
+  "homepage": "https://github.com/AjaxVM/javascript-selenium-actions#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "jest": "^26.4.2",
+    "jest-environment-node": "^26.3.0",
+    "selenium-webdriver": "^4.0.0-alpha.7"
+  },
+  "jest": {
+    "setupFiles": [
+      "<rootDir>/tests/e2e/setup.js"
+    ]
+  }
+}
