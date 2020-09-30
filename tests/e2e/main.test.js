@@ -13,7 +13,7 @@ const screen = {
 
 
 describe('basic: requires test server to be running', () => {
-  beforeAll(async () => {
+  beforeAll(async (done) => {
     // Jest has a timing issue with async beforeAll sometimes not completing before tests are started
     // moving them up a block appears to help
     console.log('making driver')
@@ -26,6 +26,7 @@ describe('basic: requires test server to be running', () => {
         .addArguments(['disable_gpu', 'no-sandbox']))
       .build()
     console.log('done making driver')
+    done()
   })
 
   afterAll(async () => {
