@@ -23,6 +23,7 @@ describe('basic: requires test server to be running', () => {
           .windowSize(screen)
           .addArguments(['disable_gpu', 'no-sandbox']))
         .build()
+      console.log('hello!', driver)
     })
 
     afterAll(async () => {
