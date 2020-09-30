@@ -4,7 +4,6 @@ const {
 } = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
 
-let driver
 const testURL = 'http://localhost:3000/'
 const screen = {
   width: 1920,
@@ -13,11 +12,12 @@ const screen = {
 
 
 describe('basic: requires test server to be running', () => {
-  beforeAll(async (done) => {
+  let driver
+  beforeAll((done) => {
     // Jest has a timing issue with async beforeAll sometimes not completing before tests are started
     // moving them up a block appears to help
     console.log('making driver')
-    driver = await new Builder()
+    new Builder()
       .forBrowser('chrome')
       .setChromeOptions(new chrome
         .Options()
@@ -25,8 +25,11 @@ describe('basic: requires test server to be running', () => {
         .windowSize(screen)
         .addArguments(['disable_gpu', 'no-sandbox']))
       .build()
-    console.log('done making driver')
-    done()
+      .then(d => {
+        console.log('done making driver')
+        driver = d
+        done()
+      })
   })
 
   afterAll(async () => {
