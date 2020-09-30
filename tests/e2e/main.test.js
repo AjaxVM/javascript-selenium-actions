@@ -15,7 +15,6 @@ jest.setTimeout(30000) // this is to allow enough time for the driver to be crea
 describe('basic: requires test server to be running', () => {
   let driver
   beforeAll(async () => {
-    console.log('making driver')
     driver = await new Builder()
       .forBrowser('chrome')
       .setChromeOptions(new chrome
@@ -24,7 +23,6 @@ describe('basic: requires test server to be running', () => {
         .windowSize(screen)
         .addArguments(['disable_gpu', 'no-sandbox']))
       .build()
-    console.log('finished making driver')
   })
 
   afterAll(async () => {
@@ -33,7 +31,6 @@ describe('basic: requires test server to be running', () => {
 
   describe('site works', () => {
     test('loads expected text', async () => {
-      console.log('starting test')
       const expectedText = 'Test stuff has changed'
       await driver.get(testURL)
       const receivedText = await driver.wait(
@@ -42,7 +39,6 @@ describe('basic: requires test server to be running', () => {
         ),
       ).getText()
       expect(receivedText).toMatch(expectedText)
-      console.log('completed test')
     }, 20000)
   })
 })
