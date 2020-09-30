@@ -25,5 +25,3 @@ jobs:
       run: npm start &
     - name: Run Tests
       run: npm test
-    - name: Post tests
-      run: echo "hello mum"
