@@ -13,23 +13,23 @@ const screen = {
 
 
 describe('basic: requires test server to be running', () => {
+  beforeAll(async () => {
+    driver = await new Builder()
+      .forBrowser('chrome')
+      .setChromeOptions(new chrome
+        .Options()
+        .headless()
+        .windowSize(screen)
+        .addArguments(['disable_gpu', 'no-sandbox']))
+      .build()
+    return true
+  })
+
+  afterAll(async () => {
+    await driver.quit()
+  })
+
   describe('site works', () => {
-    beforeAll(async () => {
-      driver = await new Builder()
-        .forBrowser('chrome')
-        .setChromeOptions(new chrome
-          .Options()
-          .headless()
-          .windowSize(screen)
-          .addArguments(['disable_gpu', 'no-sandbox']))
-        .build()
-      return true
-    })
-
-    afterAll(async () => {
-      await driver.quit()
-    })
-
     test('loads expected text', async () => {
       const expectedText = 'Test stuff has changed'
       await driver.get(testURL)
