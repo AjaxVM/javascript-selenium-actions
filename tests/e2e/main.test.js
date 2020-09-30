@@ -30,11 +30,11 @@ describe('basic: requires test server to be running', () => {
     })
 
     test('loads expected text', async () => {
-      const expectedText = 'Test stuff'
+      const expectedText = 'Test stuff has changed'
       await driver.get(testURL)
       const receivedText = await driver.wait(
         until.elementLocated(
-          By.xpath(`//*[@id="test-this"]`),
+          By.xpath(`//*[@id=1]`),
         ),
       ).getText()
       expect(receivedText).toMatch(expectedText)
