@@ -34,7 +34,7 @@ describe('basic: requires test server to be running', () => {
       await driver.get(testURL)
       const receivedText = await driver.wait(
         until.elementLocated(
-          By.xpath(`//*[@id=1]`),
+          By.xpath(`//*[@id=test-this]`),
         ),
       ).getText()
       expect(receivedText).toMatch(expectedText)
