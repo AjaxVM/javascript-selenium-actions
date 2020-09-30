@@ -14,6 +14,7 @@ class CustomEnvironment extends NodeEnvironment {
     this.serverProc = spawn('npm', ['start'], {
       detached: true
     })
+    this.serverProc.stdout.pipe(process.stdout)
     this.serverProc.unref()
   }
 
