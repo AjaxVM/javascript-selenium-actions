@@ -9,6 +9,7 @@ class CustomEnvironment extends NodeEnvironment {
   }
 
   async setup() {
+    console.log('setting up')
     await super.setup();
     this.serverProc = spawn('npm', ['start'], {
       detached: true
@@ -17,6 +18,7 @@ class CustomEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
+    console.log('tearing down')
     this.serverProc && this.serverProc.kill('SIGINT')
     await super.teardown();
   }

@@ -18,7 +18,6 @@ const screen = {
 describe('basic', () => {
   describe('site works', () => {
     beforeAll(async () => {
-      console.log('45')
       driver = await new Builder()
         .forBrowser('chrome')
         .setChromeOptions(new chrome
@@ -35,14 +34,12 @@ describe('basic', () => {
 
     test('loads expected text', async () => {
       const expectedText = 'Test stuff'
-      console.log('waiting for stuffz')
       await driver.get(testURL)
       const receivedText = await driver.wait(
         until.elementLocated(
           By.xpath(`//*[@id=1]`),
         ),
       ).getText()
-      console.log(receivedText);
       expect(receivedText).toMatch(expectedText)
     }, 20000)
   })
