@@ -23,6 +23,7 @@ describe('basic: requires test server to be running', () => {
           .windowSize(screen)
           .addArguments(['disable_gpu', 'no-sandbox']))
         .build()
+      return true
     })
 
     afterAll(async () => {
@@ -30,7 +31,7 @@ describe('basic: requires test server to be running', () => {
     })
 
     test('loads expected text', async () => {
-      const expectedText = 'Test stuff'
+      const expectedText = 'Test stuff has changed - should fail'
       await driver.get(testURL)
       const receivedText = await driver.wait(
         until.elementLocated(
