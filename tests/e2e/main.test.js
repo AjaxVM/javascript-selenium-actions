@@ -31,7 +31,7 @@ describe('basic: requires test server to be running', () => {
     })
 
     test('loads expected text', async () => {
-      const expectedText = 'Test stuff has changed'
+      const expectedText = 'Test stuff has changed - should fail'
       await driver.get(testURL)
       const receivedText = await driver.wait(
         until.elementLocated(
