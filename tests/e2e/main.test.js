@@ -1,5 +1,5 @@
 /**
- * @jest-environment <rootDir>/tests/e2e/selenium-env
+ * @!!jest-environment <rootDir>/tests/e2e/selenium-env
  */
 
 const {
@@ -21,7 +21,11 @@ describe('basic', () => {
       console.log('45')
       driver = await new Builder()
         .forBrowser('chrome')
-        .setChromeOptions(new chrome.Options().headless().windowSize(screen))
+        .setChromeOptions(new chrome
+          .Options()
+          .headless()
+          .windowSize(screen)
+          .addArguments(['disable_gpu', 'no-sandbox']))
         .build()
     })
 
