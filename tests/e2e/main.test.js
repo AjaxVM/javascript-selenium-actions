@@ -10,14 +10,13 @@ const screen = {
   height: 1080
 }
 
+jest.setTimeout(30000) // this is to allow enough time for the driver to be created
 
 describe('basic: requires test server to be running', () => {
   let driver
-  beforeAll((done) => {
-    // Jest has a timing issue with async beforeAll sometimes not completing before tests are started
-    // moving them up a block appears to help
+  beforeAll(async () => {
     console.log('making driver')
-    new Builder()
+    driver = awaitnew Builder()
       .forBrowser('chrome')
       .setChromeOptions(new chrome
         .Options()
@@ -25,11 +24,7 @@ describe('basic: requires test server to be running', () => {
         .windowSize(screen)
         .addArguments(['disable_gpu', 'no-sandbox']))
       .build()
-      .then(d => {
-        console.log('done making driver')
-        driver = d
-        done()
-      })
+    console.log('finished making driver')
   })
 
   afterAll(async () => {
