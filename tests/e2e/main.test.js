@@ -16,7 +16,7 @@ describe('basic: requires test server to be running', () => {
   let driver
   beforeAll(async () => {
     console.log('making driver')
-    driver = awaitnew Builder()
+    driver = await new Builder()
       .forBrowser('chrome')
       .setChromeOptions(new chrome
         .Options()
