@@ -1,6 +1,3 @@
-/**
- * @!!jest-environment <rootDir>/tests/e2e/selenium-env
- */
 
 const {
   Builder, By, until
@@ -15,7 +12,7 @@ const screen = {
 }
 
 
-describe('basic', () => {
+describe('basic: requires test server to be running', () => {
   describe('site works', () => {
     beforeAll(async () => {
       driver = await new Builder()
