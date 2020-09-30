@@ -21,4 +21,9 @@ jobs:
       with:
         node-version: 12
     - run: npm ci
-    - run: npm test
+    - name: Run API in background
+      run: npm start &
+    - name: Run Tests
+      run: npm test
+    - name: Post tests
+      run: echo "hello mum"

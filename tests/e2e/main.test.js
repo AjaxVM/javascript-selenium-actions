@@ -1,5 +1,5 @@
 /**
- * @jest-environment <rootDir>/tests/e2e/selenium-env
+ * @!!jest-environment <rootDir>/tests/e2e/selenium-env
  */
 
 const {
