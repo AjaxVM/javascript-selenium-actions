@@ -4,34 +4,34 @@ const {
 } = require('selenium-webdriver')
 const chrome = require('selenium-webdriver/chrome')
 
-let driver
 const testURL = 'http://localhost:3000/'
 const screen = {
   width: 1920,
   height: 1080
 }
 
+jest.setTimeout(30000) // this is to allow enough time for the driver to be created
 
 describe('basic: requires test server to be running', () => {
+  let driver
+  beforeAll(async () => {
+    driver = await new Builder()
+      .forBrowser('chrome')
+      .setChromeOptions(new chrome
+        .Options()
+        .headless()
+        .windowSize(screen)
+        .addArguments(['disable_gpu', 'no-sandbox']))
+      .build()
+  })
+
+  afterAll(async () => {
+    await driver.quit()
+  })
+
   describe('site works', () => {
-    beforeAll(async () => {
-      driver = await new Builder()
-        .forBrowser('chrome')
-        .setChromeOptions(new chrome
-          .Options()
-          .headless()
-          .windowSize(screen)
-          .addArguments(['disable_gpu', 'no-sandbox']))
-        .build()
-      return true
-    })
-
-    afterAll(async () => {
-      await driver.quit()
-    })
-
     test('loads expected text', async () => {
-      const expectedText = 'Test stuff has changed - should fail'
+      const expectedText = 'Test stuff has changed'
       await driver.get(testURL)
       const receivedText = await driver.wait(
         until.elementLocated(
