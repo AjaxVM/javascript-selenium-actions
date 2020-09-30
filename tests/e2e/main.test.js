@@ -14,6 +14,9 @@ const screen = {
 
 describe('basic: requires test server to be running', () => {
   beforeAll(async () => {
+    // Jest has a timing issue with async beforeAll sometimes not completing before tests are started
+    // moving them up a block appears to help
+    console.log('making driver')
     driver = await new Builder()
       .forBrowser('chrome')
       .setChromeOptions(new chrome
@@ -22,7 +25,7 @@ describe('basic: requires test server to be running', () => {
         .windowSize(screen)
         .addArguments(['disable_gpu', 'no-sandbox']))
       .build()
-    return true
+    console.log('done making driver')
   })
 
   afterAll(async () => {
@@ -31,6 +34,7 @@ describe('basic: requires test server to be running', () => {
 
   describe('site works', () => {
     test('loads expected text', async () => {
+      console.log('starting test')
       const expectedText = 'Test stuff has changed'
       await driver.get(testURL)
       const receivedText = await driver.wait(
@@ -39,6 +43,7 @@ describe('basic: requires test server to be running', () => {
         ),
       ).getText()
       expect(receivedText).toMatch(expectedText)
+      console.log('completed test')
     }, 20000)
   })
 })
